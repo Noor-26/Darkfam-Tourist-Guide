@@ -11,6 +11,9 @@
     
 }
 
+.input-field{
+    width: 100%;
+}
 .form-btn{
     background-color: crimson;
     border: none;

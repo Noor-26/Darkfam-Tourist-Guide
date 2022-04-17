@@ -17,18 +17,25 @@ const Login = () => {
       const emailRef = useRef()
       const passwordRef = useRef()
 
-      
+      const handleSubmit = event =>{
+          event.preventDefault()
+          const email = emailRef.current.value
+          const password = passwordRef.current.value
+          createUserWithEmailAndPassword(email, password)
+          console.log("user sent")
+      }
+
     return (
         <div  className="form-container" >
-            <form className="border p-5">
+            <form className="border p-5" onSubmit={handleSubmit}>
                 <h3>Login</h3>
                 <div className="d-flex form-field">
                    
                     <label htmlFor="email">Email</label>
-                    <input type="email" name="email" id="email" className="mb-3 py-1 px-5" />
+                    <input type="email" name="email" id="email" className="mb-3 py-1 ps-1  input-field"    ref={emailRef} />
                     
                     <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" className="mb-3 py-1 px-5" />
+                    <input type="password" name="password" id="password" className="mb-3 py-1 ps-1 pe-5 input-field  " ref={passwordRef} />
                    
 
                     <div className="text-center">
@@ -38,8 +45,8 @@ const Login = () => {
                     <p>Need an account ? <Link to='/register' className="form-link">Sign up</Link> </p>
                     
                 </div>
-                <SocialLogin/> 
             </form>
+                <SocialLogin/> 
         </div>
     );
 };

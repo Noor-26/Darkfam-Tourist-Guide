@@ -16,7 +16,7 @@ const SocialLogin = () => {
                 <div className="line"></div>
             </div>
             <div className="buttons">
-                <button className="btn border px-5 rounded-pill mx-auto mb-3"><img src={google} className="icon " alt="" onClick={() => signInWithGoogle()} /> Google Sign in</button>
+                <button className="btn border px-5 rounded-pill mx-auto mb-3" onClick={() => signInWithGoogle()}><img src={google} className="icon " alt=""  /> Google Sign in</button>
             </div>
         </div>
     );
