@@ -1,0 +1,24 @@
+[
+    {
+        "id" : 1,
+        "name" : "3 meals per day",
+        "price" :150,
+        "img":"https://i.ibb.co/9G4m2Q0/tamara-malaniy-gdi-Nvl-hvso-unsplash.jpg",
+        "description" : "Meals will be provided i you book this service of mine. "
+    },
+    {
+        "id" : 2,
+        "name" : "Hotel room",
+        "price" :800,
+        "img":"https://i.ibb.co/j6KVR0r/img-2.jpg",
+        "description" : "You will be giving a room in my hotel for staying. "
+    },
+    {
+        "id" : 3,
+        "name" : "Hicking",
+        "price" :150,
+        "img":"https://i.ibb.co/k2NPHMT/img-03-7.jpg",
+        "description" : "There are many mountains in this area. If you book this service , I will guide you to them and will go to hicking. "
+    }
+   
+]
