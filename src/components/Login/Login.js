@@ -1,6 +1,6 @@
 import React from 'react';
 import  { useRef } from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import {  useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
@@ -8,11 +8,12 @@ import './Login.css';
 
 const Login = () => {
     const [
-        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+      ] = useSignInWithEmailAndPassword(auth);
+      let errorElement;
       
       const emailRef = useRef()
       const passwordRef = useRef()
@@ -21,32 +22,36 @@ const Login = () => {
           event.preventDefault()
           const email = emailRef.current.value
           const password = passwordRef.current.value
-          createUserWithEmailAndPassword(email, password)
+          signInWithEmailAndPassword(email, password)
           console.log("user sent")
       }
-
+      if(error){
+        errorElement = <p className="text-danger error-text">Error : {error?.message}</p>
+    }
     return (
         <div  className="form-container" >
-            <form className="border p-5" onSubmit={handleSubmit}>
+            <div className="border p-5">
+            <form  onSubmit={handleSubmit}>
                 <h3>Login</h3>
                 <div className="d-flex form-field">
                    
                     <label htmlFor="email">Email</label>
-                    <input type="email" name="email" id="email" className="mb-3 py-1 ps-1  input-field"    ref={emailRef} />
+                    <input type="email" name="email" id="email" className="mb-3 py-1 ps-1  input-field"    ref={emailRef} required/>
                     
                     <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" className="mb-3 py-1 ps-1 pe-5 input-field  " ref={passwordRef} />
+                    <input type="password" name="password" id="password" className="mb-3 py-1 ps-1 pe-5 input-field" ref={passwordRef} required/>
                    
 
                     <div className="text-center">
                         <button className="py-1 mb-3  form-btn">Login</button>
                     </div> 
-
+                    {errorElement}
                     <p>Need an account ? <Link to='/register' className="form-link">Sign up</Link> </p>
                     
                 </div>
             </form>
                 <SocialLogin/> 
+                </div>
         </div>
     );
 };
