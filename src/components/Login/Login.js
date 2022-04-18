@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import  { useRef } from 'react';
 import {  useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 import './Login.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loading from '../Shared/Loading/Loading';
 
 const Login = () => {
     const [
@@ -29,11 +32,18 @@ const Login = () => {
 
     const location = useLocation()
     let from = location.state?.from?.pathname || '/'
+      useEffect(() => {
+        
+          if(error){
+            toast(error?.message);
+        }
+       
+      }, [error]) 
+      
 
-      if(error){
-        errorElement = <p className="text-danger error-text">Error : {error?.message}</p>
-    }
-
+      if(loading){
+          return <Loading/>
+      }
     if(user){
         navigate(from,{replace:true})
       }
@@ -60,6 +70,7 @@ const Login = () => {
                 </div>
             </form>
                 <SocialLogin/> 
+                <ToastContainer/>
                 </div>
         </div>
     );
