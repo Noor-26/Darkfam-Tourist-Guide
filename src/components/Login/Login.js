@@ -1,7 +1,7 @@
 import React from 'react';
 import  { useRef } from 'react';
 import {  useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 import './Login.css';
@@ -25,9 +25,18 @@ const Login = () => {
           signInWithEmailAndPassword(email, password)
           console.log("user sent")
       }
+      const navigate = useNavigate()
+
+    const location = useLocation()
+    let from = location.state?.from?.pathname || '/'
+
       if(error){
         errorElement = <p className="text-danger error-text">Error : {error?.message}</p>
     }
+
+    if(user){
+        navigate(from,{replace:true})
+      }
     return (
         <div  className="form-container" >
             <div className="border p-5">
