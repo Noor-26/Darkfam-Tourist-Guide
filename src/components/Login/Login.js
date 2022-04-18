@@ -54,8 +54,8 @@ const Login = () => {
         toast("email sent")
       }
     return (
-        <div  className="form-container" >
-            <div className="border p-5">
+        <div  className="form-container mt-5" >
+            <div className="border p-4  p-md-5">
             <form  onSubmit={handleSubmit}>
                 <h3>Login</h3>
                 <div className="d-flex form-field">

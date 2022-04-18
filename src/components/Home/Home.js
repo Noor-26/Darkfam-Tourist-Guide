@@ -5,8 +5,8 @@ import Services from '../Services/Services';
 const Home = () => {
     return (
         <div>
-            {/* <Banner/> */}
-           <Services/>
+            <Banner/>
+           <Services/> 
            {/* extra component */}
            <PopularSpot/>
         </div>

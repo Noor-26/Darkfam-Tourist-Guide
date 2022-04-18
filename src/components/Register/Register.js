@@ -37,12 +37,11 @@ const Register = () => {
     }
 
     return (
-        <div className="form-container" >
-             <form className="border p-5" onSubmit={handleSubmit}>
+        <div className="form-container my-5" >
+             <form className="border p-5 mt-5" onSubmit={handleSubmit}>
                 <h3>Sign up</h3>
                 <div className="d-flex form-field">
                     
-                
                     <label htmlFor="email">Email</label>
                     <input type="email" required name="email" id="email" className="mb-3 py-1 ps-1  input-field"    ref={emailRef} />
                     
@@ -60,8 +59,8 @@ const Register = () => {
                     <p>Already a user? <Link to='/login' className="form-link">Login here</Link> </p>
                     
                 </div>
-            </form>
                 <SocialLogin/> 
+            </form>
         </div>
     );
 };
