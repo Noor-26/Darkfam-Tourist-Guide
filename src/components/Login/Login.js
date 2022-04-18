@@ -16,7 +16,7 @@ const Login = () => {
         loading,
         error,
       ] = useSignInWithEmailAndPassword(auth);
-      let errorElement;
+      const [updatePassword, updating, error1] = useUpdatePassword(auth);
       
       const emailRef = useRef()
       const passwordRef = useRef()
@@ -44,8 +44,15 @@ const Login = () => {
       if(loading){
           return <Loading/>
       }
+
     if(user){
         navigate(from,{replace:true})
+      }
+
+      const  resetPassword = async () => {
+        const email = emailRef.current.value
+        await updatePassword(email);
+        toast("email sent")
       }
     return (
         <div  className="form-container" >
@@ -64,7 +71,8 @@ const Login = () => {
                     <div className="text-center">
                         <button className="py-1 mb-3  form-btn">Login</button>
                     </div> 
-                    {errorElement}
+                    <p>Forget your password ? <button onClick={resetPassword} className="">Reset Password</button></p>
+
                     <p>Need an account ? <Link to='/register' className="form-link">Sign up</Link> </p>
                     
                 </div>
