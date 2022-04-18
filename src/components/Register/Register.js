@@ -13,25 +13,27 @@ const Register = () => {
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+      ] = useCreateUserWithEmailAndPassword(auth,{sendEmailVerification:true});
       const confirmPassRef = useRef()
       const emailRef = useRef()
       const passwordRef = useRef()
-
       let errorElement;
+      
       const handleSubmit = event =>{
         event.preventDefault();
         const email = emailRef.current.value
         const password = passwordRef.current.value
-        createUserWithEmailAndPassword(email, password,{sendEmailVerification:true})
-
+        createUserWithEmailAndPassword(email, password)
     }
+
     if(error){
         errorElement = <p className="text-danger error-text">Error : {error?.message}</p>
     }
+
     if(loading){
         return <Loading/>
     }
+
     if(user){
         navigate('/home')
     }

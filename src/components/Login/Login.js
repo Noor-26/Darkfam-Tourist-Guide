@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import  { useRef } from 'react';
-import {  useSignInWithEmailAndPassword, useUpdatePassword } from 'react-firebase-hooks/auth';
+import {  useSignInWithEmailAndPassword, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
@@ -16,7 +16,7 @@ const Login = () => {
         loading,
         error,
       ] = useSignInWithEmailAndPassword(auth);
-      const [updatePassword, updating, error1] = useUpdatePassword(auth);
+      const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
       
       const emailRef = useRef()
       const passwordRef = useRef()
@@ -32,15 +32,14 @@ const Login = () => {
     const location = useLocation()
     let from = location.state?.from?.pathname || '/'
       useEffect(() => {
-        
-          if(error || error1){
+
+          if(error ){
             toast(error?.message);
         }
        
-      }, [error,error1]) 
+      }, [error]) 
       
-
-      if(loading || updating){
+      if(loading ){
           return <Loading/>
       }
 
@@ -50,9 +49,15 @@ const Login = () => {
 
       const  resetPassword = async () => {
         const email = emailRef.current.value
-        await updatePassword(email);
-        toast("email sent")
+        if (email) {
+          await sendPasswordResetEmail(email);
+          toast('Check your email');
       }
+      else{
+        toast("Enter your email to reset password")
+      }
+    }
+
     return (
         <div  className="form-container mt-5" >
             <div className="border p-4  p-md-5">
@@ -66,7 +71,6 @@ const Login = () => {
                     <label htmlFor="password">Password</label>
                     <input type="password" name="password" id="password" className="mb-3 py-1 ps-1 pe-5 input-field" ref={passwordRef} required/>
                    
-
                     <div className="text-center">
                         <button className="py-1 mb-3  form-btn">Login</button>
                     </div> 

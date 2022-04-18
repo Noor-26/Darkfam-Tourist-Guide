@@ -17,12 +17,13 @@ const Service = ({service}) => {
     <Card.Text>
      Price : ${price}
     </Card.Text>
+
       <Link to="/checkout" >
-    <Button variant="primary">
+    <Button style={{backgroundColor:"crimson",border:"none"}}>
       Book now
       </Button>
       </Link>
-       
+
   </Card.Body> 
 </Card>
         </div>
