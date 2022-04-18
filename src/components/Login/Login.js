@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import  { useRef } from 'react';
-import {  useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import {  useSignInWithEmailAndPassword, useUpdatePassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
@@ -26,7 +26,6 @@ const Login = () => {
           const email = emailRef.current.value
           const password = passwordRef.current.value
           signInWithEmailAndPassword(email, password)
-          console.log("user sent")
       }
       const navigate = useNavigate()
 
@@ -34,14 +33,14 @@ const Login = () => {
     let from = location.state?.from?.pathname || '/'
       useEffect(() => {
         
-          if(error){
+          if(error || error1){
             toast(error?.message);
         }
        
-      }, [error]) 
+      }, [error,error1]) 
       
 
-      if(loading){
+      if(loading || updating){
           return <Loading/>
       }
 
@@ -71,9 +70,9 @@ const Login = () => {
                     <div className="text-center">
                         <button className="py-1 mb-3  form-btn">Login</button>
                     </div> 
-                    <p>Forget your password ? <button onClick={resetPassword} className="">Reset Password</button></p>
 
-                    <p>Need an account ? <Link to='/register' className="form-link">Sign up</Link> </p>
+                    <p>Need an account ? <Link to='/register'   className="form-link">Sign up</Link> </p>
+                    <p>Forget your password ? <button onClick={resetPassword} className="btn " style={{color:"crimson"}}>Reset Password</button></p>
                     
                 </div>
             </form>

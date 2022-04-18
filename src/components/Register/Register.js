@@ -1,12 +1,13 @@
 import React, { useRef } from 'react';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 import '../Login/Login.css'
+import Loading from '../Shared/Loading/Loading';
 
 const Register = () => {
-    
+    const navigate = useNavigate()
     const [
         createUserWithEmailAndPassword,
         user,
@@ -19,18 +20,20 @@ const Register = () => {
 
       let errorElement;
       const handleSubmit = event =>{
-        event.preventDefault()
-        const confirmPassword = confirmPassRef.current.value
+        event.preventDefault();
         const email = emailRef.current.value
         const password = passwordRef.current.value
         createUserWithEmailAndPassword(email, password,{sendEmailVerification:true})
 
-        if(password !== confirmPassword){
-            errorElement = <p>Please confirm your password</p>
-        }
     }
     if(error){
         errorElement = <p className="text-danger error-text">Error : {error?.message}</p>
+    }
+    if(loading){
+        return <Loading/>
+    }
+    if(user){
+        navigate('/home')
     }
 
     return (
