@@ -41,7 +41,8 @@ const Register = () => {
              <form className="border p-5" onSubmit={handleSubmit}>
                 <h3>Sign up</h3>
                 <div className="d-flex form-field">
-                   
+                    
+                
                     <label htmlFor="email">Email</label>
                     <input type="email" required name="email" id="email" className="mb-3 py-1 ps-1  input-field"    ref={emailRef} />
                     

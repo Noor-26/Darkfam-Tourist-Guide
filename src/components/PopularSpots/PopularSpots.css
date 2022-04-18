@@ -1,0 +1,28 @@
+.tour-component{
+    display: flex;
+    align-items: center;
+   width: 100%;
+}
+.place-names{
+    display: flex;
+    flex-wrap: wrap; 
+    gap:20px;
+    width: 50%;
+}
+.place-names p{
+    cursor: pointer;
+    font-size: 18px;
+}
+.place-names p:hover{
+    color: crimson;
+    
+}
+
+@media (max-width:767px) {
+    .tour-component{
+        flex-direction: column;
+    }
+    .place-names{
+        width:80%
+    }
+}
