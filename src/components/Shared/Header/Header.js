@@ -17,7 +17,7 @@ const Header = () => {
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="me-auto">
       <Nav.Link as={Link} to="/service">Service</Nav.Link>
-      <Nav.Link as={Link} to="/Blog">Blog</Nav.Link> 
+      <Nav.Link as={Link} to="/Blog">Blogs</Nav.Link> 
       
     </Nav>
     <Nav>
@@ -25,7 +25,7 @@ const Header = () => {
 
     {
        user ?
-       <button className='btn btn-link text-white text-decoration-none' onClick={() => signOut(auth)}>sign out</button>
+       <button className='btn btn-link text-white text-decoration-none' onClick={() => signOut(auth)}>Sign out</button>
    :
       <Nav.Link as={Link} to="/login">Login</Nav.Link>
     }
