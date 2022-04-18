@@ -22,7 +22,6 @@ const Service = ({service}) => {
       Book now
       </Button>
       </Link>
-   
        
   </Card.Body> 
 </Card>
